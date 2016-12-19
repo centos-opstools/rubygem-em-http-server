@@ -3,7 +3,7 @@
 
 Name:           rubygem-%{gem_name}
 Version:        0.1.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Simple http server for eventmachine with the same interface as evma_httpserver
 Group:          Development/Languages
 License:        MIT
@@ -18,6 +18,9 @@ BuildRequires:  rubygem(eventmachine)
 Requires:       rubygem(eventmachine)
 
 BuildArch:      noarch
+%if 0%{?el7}
+Provides:       rubygem(%{gem_name}) = %{version}
+%endif
 
 %description
 Simple http server for eventmachine.
@@ -79,5 +82,8 @@ popd
 %{gem_instdir}/test
 
 %changelog
-* Fri Dec 16 2016 para <mmagr@redhat.com> - 0.1.8-1
+* Fri Dec 16 2016 Martin Mágr <mmagr@redhat.com> - 0.1.8-2
+- Added Provides for EL releases
+
+* Fri Dec 16 2016 Martin Mágr <mmagr@redhat.com> - 0.1.8-1
 - Initial package
