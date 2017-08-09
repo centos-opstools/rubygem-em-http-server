@@ -38,7 +38,11 @@ Documentation for %{name}.
 %prep
 gem unpack %{SOURCE0}
 
+%if 0%{?dlrn} > 0
+%setup -q -D -T -n  %{dlrn_nvr}
+%else
 %setup -q -D -T -n  %{gem_name}-%{version}
+%endif
 
 gem spec %{SOURCE0} -l --ruby > %{gem_name}.gemspec
 
